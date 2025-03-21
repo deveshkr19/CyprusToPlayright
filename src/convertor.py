@@ -48,20 +48,28 @@ uploaded_file = st.file_uploader("Upload a Cypress test file (.js or .ts)", type
 
 def convert_to_playwright(cypress_code: str) -> str:
     prompt = f"""
-Convert the following Cypress test case to a Playwright test using '@playwright/test'.
-Use async/await syntax and modern Playwright practices.
+You are a senior automation engineer. Your task is to convert Cypress tests to Playwright tests using '@playwright/test'.
+Make sure:
+- Use `import {{ test, expect }} from '@playwright/test';`
+- Use `test('test name', async {{ page }}) => {{ ... }})` format
+- Replace `cy.get(...)` with `page.locator(...)`
+- Use `.fill()`, `.click()`, `.press()`, `.check()` etc. as needed
+- Use `expect(page).toHaveURL(...)` instead of Cypress-style assertions
+- Handle `cy.intercept`, `cy.wait`, and `cy.contains` if present
 
-Cypress Test:
+Convert the following Cypress code to Playwright:
+
 {cypress_code}
 
 Playwright Test:
 """
     response = ai_client.chat.completions.create(
-        model="gpt-4",  # or "gpt-3.5-turbo"
+        model="gpt-4",  # "gpt-4" gives the best result
         messages=[{"role": "user", "content": prompt}],
         temperature=0.2
     )
     return response.choices[0].message.content
+
 
 if uploaded_file:
     cypress_code = uploaded_file.read().decode("utf-8")
