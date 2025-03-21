@@ -21,11 +21,19 @@ st.set_page_config(page_title="Cypress to Playwright Converter", layout="wide")
 st.title(" Cypress to Playwright Test Converter using Gen AI")
 # App Description
 st.write(
-    "This application predicts the optimal number of pods required in OpenShift based on LoadRunner performance data. "
-    "It considers factors like TPS (transactions per second), CPU and memory usage per pod, and threshold limits "
-    "to recommend the best scaling strategy."
-)
+   """
+### 🔹 About This App
+This app helps you **convert Cypress test scripts into Playwright scripts** using AI. 
 
+### How It Works:
+1️**Upload a Cypress test file (.js or .ts)**  
+2️ **Click Convert** – AI will generate a Playwright version  
+3️ **Preview the converted script**  
+4️ **Download the Playwright test file**  
+
+This makes it **easier to migrate from Cypress to Playwright** without manual effort. 
+"""
+)
 # Add some spacing before showing the name
 st.markdown("<br>", unsafe_allow_html=True)
 
