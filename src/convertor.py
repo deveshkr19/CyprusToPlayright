@@ -17,7 +17,24 @@ ai_client = openai.OpenAI(api_key=openai_key)
 
 # UI setup
 st.set_page_config(page_title="Cypress to Playwright Converter", layout="wide")
-st.title("🚀 Cypress to Playwright Test Converter (AI-powered)")
+
+st.title(" Cypress to Playwright Test Converter using Gen AI")
+# App Description
+st.write(
+    "This application predicts the optimal number of pods required in OpenShift based on LoadRunner performance data. "
+    "It considers factors like TPS (transactions per second), CPU and memory usage per pod, and threshold limits "
+    "to recommend the best scaling strategy."
+)
+
+# Add some spacing before showing the name
+st.markdown("<br>", unsafe_allow_html=True)
+
+# Display developer name in small font at the bottom
+st.markdown(
+    "<p style='font-size:18px; text-align:center; color:gray;'>Developed by Devesh Kumar</p>",
+    unsafe_allow_html=True
+)
+
 
 uploaded_file = st.file_uploader("Upload a Cypress test file (.js or .ts)", type=["js", "ts"])
 
@@ -40,13 +57,13 @@ Playwright Test:
 
 if uploaded_file:
     cypress_code = uploaded_file.read().decode("utf-8")
-    st.subheader("📄 Original Cypress Code")
+    st.subheader("Original Cypress Code")
     st.code(cypress_code, language="javascript")
 
-    with st.spinner("🔄 Converting with GPT..."):
+    with st.spinner(" Converting with GPT..."):
         playwright_code = convert_to_playwright(cypress_code)
 
-    st.subheader("✅ Converted Playwright Code")
+    st.subheader("Converted Playwright Code")
     st.code(playwright_code, language="typescript")
 
     # Save converted file
