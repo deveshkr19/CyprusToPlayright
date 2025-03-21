@@ -1,1 +1,3 @@
-streamlit\nopenai\npython-dotenv
+streamlit
+openai
+python-dotenv
